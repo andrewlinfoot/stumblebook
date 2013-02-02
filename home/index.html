@@ -53,7 +53,7 @@
                     photoIndex = 0;
 
                     window.setInterval(function () {
-                      if(photoDataArray.length < 30 ) {
+                      if(photoDataArray.length < photoIndex + 50 ) {
                         var randomFriendArray = friendsList.data[Math.floor(Math.random() * friendsList.data.length)];
                         var randomFriendId = randomFriendArray.id
 
@@ -81,24 +81,25 @@
 
                               photoDataArray.push(randomPhoto);
                               console.log(photoDataArray.length);
-
-                              if(photoIndex < 30) {
-                                  $('#container').masonry({
-                                  // options
-                                    itemSelector : '.item',
-                                    columnWidth : 250,
-                                  });
-                                    var $image = $('<div class="item"><img src="' + photoDataArray[photoIndex].source + '" width="240px"></div>');
-                                    $('#container').imagesLoaded( function() {
-                                      $('#container').append( $image ).masonry( 'appended', $image );
-                                    });
-                                    photoIndex++;
-                              }
                             }
                           }
                         }); 
                         
                       }//end photoarray.length if statement
+                      if (photoDataArray.length > photoIndex){
+                        if( $(window).scrollTop() >= $(document).height() - $(window).height() - 1000 ) {
+                            $('#container').masonry({
+                            // options
+                              itemSelector : '.item',
+                              columnWidth : 250,  
+                            });
+                              var $image = $('<div class="item"><img src="' + photoDataArray[photoIndex].source + '" width="240px"></div>');
+                              $('#container').imagesLoaded( function() {
+                                $('#container').append( $image ).masonry( 'appended', $image);
+                              });
+                              photoIndex++;
+                        }
+                      }
                       }, 200);
                     }
                     console.log(friendsList);
