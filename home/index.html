@@ -48,36 +48,54 @@
                     return;
                   } else {
                     friendsList = response;
-                    console.log(friendsList);
-                  }
 
-                var batchRequest = []
-                var friendsRequest = []
+                    photoDataArray = [];
+                    photoIndex = 0;
 
-                for(var i = 0; i < 10; i++){
-                  var offset = Math.floor(Math.random() * 500)
-                  var friendId = friendsList.data[Math.floor(Math.random() * friendsList.data.length)].id
-                  friendsRequest[i] = friendId;
-                  batchRequest[i] = { "method" : "GET", "relative_url" : friendId + "/photos?limit=1&offset=" + offset }
-                }
+                    window.setInterval(function () {
+                      if(photoDataArray.length < 30 ) {
+                        var randomFriendArray = friendsList.data[Math.floor(Math.random() * friendsList.data.length)];
+                        var randomFriendId = randomFriendArray.id
 
-                FB.api("/", "POST", { access_token : accessToken,
-                  batch : batchRequest
-                  }, function(response){
-                    //console.log(response)
-                    photos = []
-                    for(var i = 0; i < response.length; i++){
-                      var responseData = JSON.parse(response[i].body)
-                      //console.log(responseData)
-                      if(responseData.data[0]){
-                        photos[i] = {url: responseData.data[0].source, friendid : friendsRequest[i] }
-                      }
+                        var offsetNumber = Math.floor(Math.random() * 100);
+
+                        var photoRequest = "/" + randomFriendId + "/photos?access_token=" + accessToken + "&limit=1&offset=" + offsetNumber;
+
+                        FB.api( photoRequest , 'get', function(response) {
+                          if (!response || response.error) {
+                            if( response.error['code'] == ('190' || '102') ){
+                              location.reload();
+                            }
+
+                          } else {
+                            var randomPhoto = response;
+
+                            if (randomPhoto.data.length == 0) {
+                              //doesnt do anything and the loop will restart
+                            } else {
+                              //the api returned photo data
+                              //adds the friend data
+                              //adds it to the photoDataArray
+                              randomPhoto = randomPhoto.data[0];
+                              randomPhoto.randomFriendArray = randomFriendArray;
+
+                              photoDataArray.push(randomPhoto);
+                              console.log(photoDataArray.length);
+
+                              if(photoIndex < 30) {
+                                    var $image = $('<div class="item"><img src="' + photoDataArray[photoIndex].source + '" width="240px"></div>');
+                                    $('#container').append( $image ).masonry( 'appended', $image );
+                                    photoIndex++;
+                              }
+                            }
+                          }
+                        }); 
+                        
+                      }//end photoarray.length if statement
+                      }, 200);
                     }
-                    console.log(photos)
-                })
-                })
-
-
+                    console.log(friendsList);
+                  });
               } else if (response.status === 'not_authorized') {
                 // the user is logged in to Facebook, 
                 // but has not authenticated your app
