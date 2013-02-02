@@ -8,5 +8,5 @@ $("#loginAction").click(function() {
             // cancelled
             location.reload();
         }
-    }, { scope: 'user_photos,friends_photos,publish_stream' });
+    }, { scope: 'user_photos,friends_photos' });
 });
