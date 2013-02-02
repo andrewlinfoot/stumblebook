@@ -100,26 +100,26 @@ textarea {
 
 #container{
 	background:
-radial-gradient(black 15%, transparent 16%) 0 0,
-radial-gradient(black 15%, transparent 16%) 8px 8px,
-radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
-radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
-background-color:#282828;
-background-size:16px 16px;
-width:1000px;
-margin-right: auto;
-margin-left: auto;
+    radial-gradient(black 15%, transparent 16%) 0 0,
+    radial-gradient(black 15%, transparent 16%) 8px 8px,
+    radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
+    radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
+    background-color:#282828;
+    background-size:16px 16px;
+    width:1000px;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 
 #header{
 	background:
-radial-gradient(black 15%, transparent 16%) 0 0,
-radial-gradient(black 15%, transparent 16%) 8px 8px,
-radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
-radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
-background-color:#282828;
-background-size:16px 16px;
+    radial-gradient(black 15%, transparent 16%) 0 0,
+    radial-gradient(black 15%, transparent 16%) 8px 8px,
+    radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
+    radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
+    background-color:#282828;
+    background-size:16px 16px;
 	background-color: #131313;
 	background-size: 20px 20px;	
 	border-radius: 5px;
@@ -128,30 +128,32 @@ background-size:16px 16px;
     margin-right: auto;
 }
 
-#header h5{
- 	font-size:55px;
-	font-family: 'Iceland', cursive;
-}
-
-#header h5 a{
+#header a{
 	text-decoration:none;
 	color: #D8D8D8;	
-}
-	
-h5 {
-margin: 0px;
+    margin: 0px;
+    font-size:55px;
+    font-family: 'Iceland', cursive;
 }
 
 
 /* ==========================================================================
 	Adeyo's Crappy CSS ENDS
+    Andrew's Crappy CSS Starts
    ==========================================================================
 */
 
-.item{
+.item {
 	margin: 5px;
 }
 
+#logoutButton {
+    float: right;
+}
+
+body {
+    background-color: black;
+}
 
 /* ==========================================================================
     Photoviewers CSS
