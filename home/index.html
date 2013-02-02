@@ -54,6 +54,7 @@
                     photoIndex = 0;
 
                     window.setInterval(function () {
+                      //pull photos and put them in the array
                       if(photoDataArray.length < photoIndex + 50 ) {
                         var randomFriendArray = friendsList.data[Math.floor(Math.random() * friendsList.data.length)];
                         var randomFriendId = randomFriendArray.id
@@ -81,12 +82,13 @@
                               randomPhoto.randomFriendArray = randomFriendArray;
 
                               photoDataArray.push(randomPhoto);
-                              console.log(photoDataArray.length);
                             }
                           }
                         }); 
                         
                       }//end photoarray.length if statement
+
+                      //append more photos
                       if (photoDataArray.length > photoIndex){
                         if( $(window).scrollTop() >= $(document).height() - $(window).height() - 1000 ) {
                             $('#container').masonry({
@@ -94,28 +96,38 @@
                               itemSelector : '.item',
                               columnWidth : 250,  
                             });
-                              var $image = $('<div class="item img_wrapper"><img class="pics" src="' 
+                              var $image = $('<div class="item img_wrapper"><a><img class="pics" src="' 
                                 + photoDataArray[photoIndex].source 
                                 + '" width="240px" data-glisse-big="'
                                 + photoDataArray[photoIndex].source
-                                + '" rel="group1"></div>');
+                                + '" rel="group1"></a></div>');
                               $('#container').imagesLoaded( function() {
                                 $('#container').append( $image ).masonry( 'appended', $image);
                               });
                               photoIndex++;
+
+                              //Photoviewer Javascript
+                              $('.pics').glisse({
+                                  changeSpeed: 550, 
+                                  speed: 200,
+                                  effect:'fade',
+                              }); 
+                        }
+
+                        //if there are over 75 photos, begin removing the begining ones
+                        if( photoIndex > 75 ){
+                          $items = $('.item:lt(50)');
+                          photoIndex = photoIndex - 50;
+                          photoDataArray.splice(0,50);
+
+                          $('#container').masonry( 'remove', $items )
                         }
                       }
 
-                      //Photoviewer Javascript
-                      $('.pics').glisse({
-                          changeSpeed: 550, 
-                          speed: 200,
-                          effect:'fade',
-                      }); 
+
 
                       }, 200);
                     }
-                    console.log(friendsList);
                   });
               } else if (response.status === 'not_authorized') {
                 // the user is logged in to Facebook, 
