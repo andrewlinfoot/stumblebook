@@ -94,16 +94,25 @@
                               itemSelector : '.item',
                               columnWidth : 250,  
                             });
-                              var $image = $('<div class="item"><img class="myImage" src="' 
+                              var $image = $('<div class="item img_wrapper"><img class="pics" src="' 
                                 + photoDataArray[photoIndex].source 
-                                + '" width="240px">'
-                                + '</div>');
+                                + '" width="240px" data-glisse-big="'
+                                + photoDataArray[photoIndex].source
+                                + '" rel="group1"></div>');
                               $('#container').imagesLoaded( function() {
                                 $('#container').append( $image ).masonry( 'appended', $image);
                               });
                               photoIndex++;
                         }
                       }
+
+                      //Photoviewer Javascript
+                      $('.pics').glisse({
+                          changeSpeed: 550, 
+                          speed: 200,
+                          effect:'fade',
+                      }); 
+
                       }, 200);
                     }
                     console.log(friendsList);
@@ -139,7 +148,11 @@
 
         <!-- Add your site or application content here -->
         <div id="landingPage" style="display:none;">
-          <h4><a href="#" id="loginAction">Login With Facebook</a></h4>
+          <center>
+            <h3>StumbleBook</h3>
+            <h4>Rediscover the best of Facebook</h4>
+            <h4><a href="#" id="loginAction">Login With Facebook</a></h4>
+          </center>
         </div>
 
         <div id="mainPage" style="display:none;">
