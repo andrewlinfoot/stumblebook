@@ -93,16 +93,44 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+/* ==========================================================================
+	Adeyo's Crappy CSS STARTS
+   ==========================================================================
+*/
 
-.item {
-    margin: 5px;
+#container{
+	background-color: #000;
 }
 
 
+#header{
+	background-color: #161616;	
+	border-radius: 5px;
+}
+
+#header h5{
+ 	font-size:55px;
+	font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+#header h5 a{
+	text-decoration:none;
+	color: #D8D8D8;	
+}
+	
+h5 {
+margin: 0px;
+}
 
 
+/* ==========================================================================
+	Adeyo's Crappy CSS ENDS
+   ==========================================================================
+*/
 
-
+.item{
+	margin: 5px;
+}
 
 
 
