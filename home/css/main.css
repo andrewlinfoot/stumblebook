@@ -106,6 +106,9 @@ radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
 radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
 background-color:#282828;
 background-size:16px 16px;
+width:1000px;
+margin-right: auto;
+margin-left: auto;
 }
 
 
@@ -120,6 +123,9 @@ background-size:16px 16px;
 	background-color: #131313;
 	background-size: 20px 20px;	
 	border-radius: 5px;
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #header h5{
