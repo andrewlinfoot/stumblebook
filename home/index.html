@@ -17,6 +17,32 @@
         <script src="js/vendor/modernizr-2.6.2.min.js"></script>
     </head>
     <body>
+        <div id="fb-root"></div>
+        <script>
+          window.fbAsyncInit = function() {
+            // init the FB JS SDK
+            FB.init({
+              appId      : '601523516531626', // App ID from the App Dashboard
+              channelUrl : 'channel.html', // Channel File for x-domain communication
+              status     : true, // check the login status upon init?
+              cookie     : true, // set sessions cookies to allow your server to access the session?
+              xfbml      : true  // parse XFBML tags on this page?
+            });
+
+            //Initialization Code
+
+          };
+
+          // Load the SDK's source Asynchronously
+          (function(d, debug){
+             var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+             if (d.getElementById(id)) {return;}
+             js = d.createElement('script'); js.id = id; js.async = true;
+             js.src = "//connect.facebook.net/en_US/all" + (debug ? "/debug" : "") + ".js";
+             ref.parentNode.insertBefore(js, ref);
+           }(document, /*debug*/ false));
+        </script>
+
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
