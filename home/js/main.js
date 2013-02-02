@@ -10,3 +10,14 @@ $("#loginAction").click(function() {
         }
     }, { scope: 'user_photos,friends_photos' });
 });
+
+$(function(){
+	console.log("masonry");
+	$('#container').imagesLoaded( function(){
+	  $('#container').masonry({
+	    // options
+	    itemSelector : '.item',
+	    columnWidth : 240
+	  });
+	});
+});
