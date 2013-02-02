@@ -38,8 +38,20 @@
                 // request, and the time the access token 
                 // and signed request each expire
                 console.log("logged in");
-                var uid = response.authResponse.userID;
-                var accessToken = response.authResponse.accessToken;
+                //USING SHITTY GLOBAL VARIABLES
+                uid = response.authResponse.userID;
+                accessToken = response.authResponse.accessToken;
+
+                FB.api("/me/friends?access_token=" + accessToken , 'get', function(response) {
+                  if (!response || response.error) {
+                    alert(response.error['message']);
+                  } else {
+                    friendsList = response;
+                    console.log(friendsList);
+                  }
+                });
+
+
               } else if (response.status === 'not_authorized') {
                 // the user is logged in to Facebook, 
                 // but has not authenticated your app
@@ -62,12 +74,13 @@
            }(document, /*debug*/ false));
         </script>
 
+
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
 
         <!-- Add your site or application content here -->
-        <p>Hello world! This is HTML5 Boilerplate.</p>
+        <h4><a href="#" id="loginAction">Login With Facebook</a></h4>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.0.min.js"><\/script>')</script>
