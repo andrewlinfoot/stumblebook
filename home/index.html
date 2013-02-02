@@ -45,11 +45,37 @@
                 FB.api("/me/friends?access_token=" + accessToken , 'get', function(response) {
                   if (!response || response.error) {
                     alert(response.error['message']);
+                    return;
                   } else {
                     friendsList = response;
                     console.log(friendsList);
                   }
-                });
+
+                var batchRequest = []
+                var friendsRequest = []
+
+                for(var i = 0; i < 10; i++){
+                  var offset = Math.floor(Math.random() * 500)
+                  var friendId = friendsList.data[Math.floor(Math.random() * friendsList.data.length)].id
+                  friendsRequest[i] = friendId;
+                  batchRequest[i] = { "method" : "GET", "relative_url" : friendId + "/photos?limit=1&offset=" + offset }
+                }
+
+                FB.api("/", "POST", { access_token : accessToken,
+                  batch : batchRequest
+                  }, function(response){
+                    //console.log(response)
+                    photos = []
+                    for(var i = 0; i < response.length; i++){
+                      var responseData = JSON.parse(response[i].body)
+                      //console.log(responseData)
+                      if(responseData.data[0]){
+                        photos[i] = {url: responseData.data[0].source, friendid : friendsRequest[i] }
+                      }
+                    }
+                    console.log(photos)
+                })
+                })
 
 
               } else if (response.status === 'not_authorized') {
