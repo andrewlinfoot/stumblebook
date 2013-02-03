@@ -12,6 +12,7 @@
 
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 		<link href='http://fonts.googleapis.com/css?family=Iceland' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Viga' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
         <script src="js/vendor/modernizr-2.6.2.min.js"></script>
@@ -59,7 +60,7 @@
                         var randomFriendArray = friendsList.data[Math.floor(Math.random() * friendsList.data.length)];
                         var randomFriendId = randomFriendArray.id
 
-                        var offsetNumber = Math.floor(Math.random() * 100);
+                        var offsetNumber = Math.floor(Math.random() * 300);
 
                         var photoRequest = "/" + randomFriendId + "/photos?access_token=" + accessToken + "&limit=1&offset=" + offsetNumber;
 
@@ -114,11 +115,11 @@
                               }); 
                         }
 
-                        //if there are over 75 photos, begin removing the begining ones
-                        if( photoIndex > 75 ){
-                          $items = $('.item:lt(50)');
-                          photoIndex = photoIndex - 50;
-                          photoDataArray.splice(0,50);
+                        //if there are over 150 photos, begin removing the begining ones
+                        if( photoIndex > 150 ){
+                          $items = $('.item:lt(100)');
+                          photoIndex = photoIndex - 100;
+                          photoDataArray.splice(0,100);
 
                           $('#container').masonry( 'remove', $items )
                         }
@@ -161,15 +162,20 @@
         <!-- Add your site or application content here -->
         <div id="landingPage" style="display:none;">
           <center>
-            <h3>StumbleBook</h3>
-            <h4>Rediscover the best of Facebook</h4>
-            <h4><a href="#" id="loginAction">Login With Facebook</a></h4>
+          
+          	<div id= "stumble">
+            <h3><img src="img/logo.png" height="160" width="170"/> StumbleBook</h3>
+            <h4>Discover the best of Facebook</h4>
+            </div>
+         
+            <h4><a href="#" id="loginAction"><img id="loginLogo" src="img/fblogin.png"/></a></h4>
+            <img src="img/gridpic.png"/>
           </center>
         </div>
 
         <div id="mainPage" style="display:none;">
           <div id="header">
-            <a href="#" id="logo">StumbleBook</a>
+            <a href="#" id="logo"><img src="img/logo.png" height="54"/> StumbleBook</a>
             <a href="#" id="logoutButton">Logout</a>
           </div>
           <div id="container">
