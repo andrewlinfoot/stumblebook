@@ -19,3 +19,5 @@ $("#logoutButton").click(function() {
       location.reload();
   });
 });
+
+$("#footer").sticky({bottomSpacing:0});

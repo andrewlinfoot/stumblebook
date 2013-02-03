@@ -185,6 +185,10 @@ body{
 	font-family: 'Viga', sans-serif;
 }
 
+#footer{
+    height 20px;
+    background-color: white;
+}
 
 /* ==========================================================================
     Photoviewers CSS
